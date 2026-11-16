@@ -34,7 +34,7 @@ applications:
     valueFiles:
       - values.yaml
   - name: open-webui
-    enabled: false
+    enabled: true
     namespace: open-webui
     path: platforms/ai/open-webui
     valueFiles:
