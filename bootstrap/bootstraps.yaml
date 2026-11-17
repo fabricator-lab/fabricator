@@ -9,20 +9,32 @@ applications:
   # AI
   #
   ######################################################################
+  - name: mcp
+    enabled: true
+    namespace: mcp
+    path: platforms/ai/mcp
+    valueFiles:
+      - kubernetes-mcp-server.yaml
   - name: jarvis
-    enabled: false
+    enabled: true
     namespace: jarvis
     path: platforms/ai/jarvis
     valueFiles:
       - values.yaml
+  - name: litellm
+    enabled: true
+    namespace: litellm
+    path: platforms/ai/litellm
+    valueFiles:
+      - values.yaml
   - name: ollama
-    enabled: false
+    enabled: true
     namespace: ollama
     path: platforms/ai/ollama
     valueFiles:
       - values.yaml
   - name: open-webui
-    enabled: false
+    enabled: true
     namespace: open-webui
     path: platforms/ai/open-webui
     valueFiles:
@@ -90,15 +102,16 @@ applications:
     extraParams:
     - name: "opensearchDashboards.enabled"
       value: "true"
-  - name: postgresql
-    enabled: false
-    namespace: postgresql
-    path: platforms/databases/postgresql
-    valueFiles:
-      - values.yaml
-    extraParams:
-    - name: "pgbouncer.enabled"
-      value: "false"
+  ## Deprecated bitnami helm charts
+  # - name: postgresql
+  #   enabled: true
+  #   namespace: postgresql
+  #   path: platforms/databases/postgresql
+  #   valueFiles:
+  #     - values.yaml
+  #   extraParams:
+  #   - name: "pgbouncer.enabled"
+  #     value: "false"
   - name: qdrant
     enabled: false
     namespace: qdrant
@@ -141,6 +154,12 @@ applications:
   # Operators
   #
   ######################################################################
+  - name: cnpg
+    enabled: true
+    namespace: cnpg
+    path: platforms/operators/cnpg
+    valueFiles:
+      - values.yaml
   - name: fluent
     enabled: false
     namespace: fluent
@@ -190,7 +209,7 @@ applications:
     valueFiles:
       - values.yaml
   - name: seaweedfs
-    enabled: true
+    enabled: false
     namespace: seaweedfs
     path: platforms/storage/seaweedfs
     valueFiles:
@@ -233,30 +252,48 @@ applications:
 
   ######################################################################
   #
-  # Others
+  # Ultilities
   #
   ######################################################################
   - name: code-server
     enabled: false
     namespace: code-server
-    path: platforms/others/code-server
+    path: platforms/ultilities/code-server
+    valueFiles:
+      - values.yaml
+  - name: dbgate
+    enabled: true
+    namespace: dbgate
+    path: platforms/ultilities/dbgate
+    valueFiles:
+      - values.yaml
+  - name: headlamp
+    enabled: true
+    namespace: headlamp
+    path: platforms/ultilities/headlamp
     valueFiles:
       - values.yaml
   - name: localstack
     enabled: false
     namespace: localstack
-    path: platforms/others/localstack
+    path: platforms/ultilities/localstack
     valueFiles:
       - values.yaml
   - name: metrics-server
     enabled: false
     namespace: metrics-server
-    path: platforms/others/metrics-server
+    path: platforms/ultilities/metrics-server
+    valueFiles:
+      - values.yaml
+  - name: toolbox
+    enabled: true
+    namespace: toolbox
+    path: platforms/ultilities/toolbox
     valueFiles:
       - values.yaml
   - name: zookeeper
     enabled: false
     namespace: zookeeper
-    path: platforms/others/zookeeper
+    path: platforms/ultilities/zookeeper
     valueFiles:
       - values.yaml

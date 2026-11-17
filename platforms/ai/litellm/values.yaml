@@ -1,0 +1,64 @@
+litellm-helm:
+  replicaCount: 1
+  liteadmin:
+    enabled: false
+
+  image:
+    repository: ghcr.io/berriai/litellm
+    pullPolicy: IfNotPresent
+    tag: "v1.85.1"
+
+  serviceAccount:
+    create: true
+
+  environmentSecrets:
+    - litellm-masterkey-secret
+    - litellm-credentials-secret
+
+  service:
+    type: ClusterIP
+    port: 4000
+
+  masterkeySecretName: "litellm-masterkey-secret"
+  masterkeySecretKey: "MASTER_KEY"
+
+  proxyConfigMap:
+    create: false
+    name: "litellm-config"
+    key: "config.yaml"
+
+  resources: {}
+
+  db:
+    useExisting: true
+    deployStandalone: false
+
+    database: litellm
+    port: 5432
+    schema: litellm
+    secret:
+      name: litellm-postgresql-secret
+      usernameKey: username
+      passwordKey: password
+      endpointKey: endpoint
+
+    connectionPool:
+      enabled: true
+      maxDbConnections: 20
+      maxClientConn: 1000
+
+  migrationJob:
+    enabled: true
+    backoffLimit: 4
+    activeDeadlineSeconds: 1800
+    ttlSecondsAfterFinished: 120
+    resources: {}
+
+
+    hooks:
+      argocd:
+        enabled: false
+      helm:
+        enabled: false
+
+  logLevel: INFO

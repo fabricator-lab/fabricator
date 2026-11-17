@@ -22,7 +22,7 @@ unichart:
     resources:
       limits:
         cpu: 3800m
-        memory: 12Gi
+        memory: 15Gi
       requests:
         cpu: 1
         memory: 2Gi
@@ -51,14 +51,18 @@ unichart:
           items:
             # - key: gemma3_1b-Modelfile
             #   path: gemma3:1b/Modelfile
-            - key: qwen3_1.7b-Modelfile
-              path: qwen3:1.7b/Modelfile
+            # - key: qwen3_1.7b-Modelfile
+            #   path: qwen3:1.7b/Modelfile
+            # - key: qwen3_0.6b-Modelfile
+            #   path: qwen3:0.6b/Modelfile
+            - key: smollm2_135m-Modelfile
+              path: smollm2:135m/Modelfile
       - name: ollama-init-models-script
         configMap:
           name: ollama-init-models-script
           defaultMode: 0755
 
-  
+
   persistence:
     name: ollama-pvc
     enabled: true
