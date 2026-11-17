@@ -1,6 +1,10 @@
+<p align="center">
+  <img src="assets/fabricator-logo/png/fabricator-banner-1280x512.png" alt="Fabricator banner" width="100%">
+</p>
+
 # Fabricator
 
-**A GitOps-driven home-lab platform on Kubernetes (k3s on Raspberry Pi 5).**
+**An AI-Powered GitOps-driven home-lab platform on Kubernetes.**
 
 Fabricator turns a few small machines into a self-hosted platform. One Ansible run builds the
 cluster, one Helmfile run installs the core services, and from then on Argo CD deploys everything
